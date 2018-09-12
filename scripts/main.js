@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	console.log('application has started');
 });
 
+const dbPromise = indexedDB.open('test-db1', 1);
+
 const addButton = document.querySelector('.addBtn').addEventListener('click', () => {
 	addTask();
 });
@@ -37,7 +39,13 @@ const addTask = () => {
 initializeUI();
 
 // const makeAxiosCall = () => {
-// 	axios.get('https://jsonplaceholder.typicode.com/users')
+// 	axios.get({
+// 		method: 'get',
+// 		url: 'http://192.168.43.52:3000/tasks',
+// 		headers: {
+// 			"Access-Control-Allow-Origin": "*"
+// 		}
+// 	})
 // 		.then(data => {
 // 			console.log('returned data ',data.data)
 // 		})
@@ -48,21 +56,24 @@ initializeUI();
 
 // makeAxiosCall();
 
-const makeFetchCall = () => {
-	fetch('http://localhost:3000/tasks', {
-		mode: 'no-cors'
-	})
-		.then(data => {
-			console.log('this is the data', data)
-		})
-		.catch(err => {
-			console.log('error in fetch call', err)
-		})
-}
+// const makeFetchCall = () => {
+// 	fetch('http://192.168.43.52:3000/tasks', {
+// 		mode: 'cors',
+// 		headers: {
+// 			'Access-Control-Allow-Origin':'*'
+// 		}
+// 	})	
+// 		.then(response => {
+// 			return response;
+// 		})
+// 		.then(data => {
+// 			console.log('this is the data', data)
+// 		})
+// 		.catch(err => {
+// 			console.log('error in fetch call', err)
+// 		})
+// }
 
-makeFetchCall();
-
-
-
+// makeFetchCall();
 
 

@@ -37,7 +37,7 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
 	console.log('Service Worker is fetching from ', e.request.url);
-	const url ='http://localhost:3000/tasks';
+	const dataUrl ='http://localhost:3000/tasks';
 	if(e.request.url.indexOf(dataUrl) > -1) {
 		e.respondWith(
 			caches.open(dataCacheName)
@@ -53,9 +53,9 @@ self.addEventListener('fetch', (e) => {
 		)
 	} else {
 		e.respondWith(
-			console.log('fetching from the cache')
 			caches.match(e.request)
 		 	  .then(response => {
+		 	  	console.log('this getting form old cache')
 		  	    return response || fetch(e.request)
 		 	  })
 		);
