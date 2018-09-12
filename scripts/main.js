@@ -1,10 +1,8 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
-	console.log('application has started');
+	console.log('application started')
 });
-
-const dbPromise = indexedDB.open('test-db1', 1);
 
 const addButton = document.querySelector('.addBtn').addEventListener('click', () => {
 	addTask();
@@ -21,7 +19,10 @@ if('serviceWorker' in navigator) {
 			 .catch(err => console.log('error loading service worker'));
 };
 
-const initializeUI = () => console.log('this is the UI setting up');
+// indexedDB
+if('indexedDB' in window) {
+	console.log('Browser supports indexedDB');
+}
 
 const addTask = () => {
 	console.log('adding task')
@@ -35,8 +36,6 @@ const addTask = () => {
 	newTask.appendChild(button);
 	list.appendChild(newTask);
 }
-
-initializeUI();
 
 // const makeAxiosCall = () => {
 // 	axios.get({

@@ -1,6 +1,7 @@
-const cacheName = "To-Do-App-v1";
-const dataCacheName = "toDoApp-data";
-const filesToCache = [
+const cacheName = "To-Do-App-v1";      // cache for local assets
+const dataCacheName = "toDoApp-data";  // cache for dynamic data
+
+const filesToCache = [				   // local assets
 	'/',
 	'/index.html',
 	'/styles/bootstrap.min.css',
@@ -23,7 +24,9 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
 	console.log('service worker activate')
 	e.waitUntil(
+		createDB(),
 		caches.keys().then(keyList => {
+			console.log('caching')
 			return Promise.all(keyList.map(key => {
 				if(key !== cacheName && key !== dataCacheName) {
 					console.log('removing old cache', key);
@@ -55,12 +58,25 @@ self.addEventListener('fetch', (e) => {
 		e.respondWith(
 			caches.match(e.request)
 		 	  .then(response => {
-		 	  	console.log('this getting form old cache')
+		 	  	console.log('this getting old cache')
 		  	    return response || fetch(e.request)
 		 	  })
 		);
 	}
 });
+
+const createDB = () => {
+	console.log('creating indexedDB');
+}
+
+
+
+
+
+
+
+
+
 
 
 
