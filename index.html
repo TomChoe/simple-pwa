@@ -8,15 +8,47 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/styles/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link type="manifest" href="/manifest.json">
   </head>
 
   <body>
   	<div class="container-fluid text-center">
-      <h1>Progressive Web App</h1>
+  		<!-- navigation bar -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="/">PWA</a>
+		    <ul class="navbar-nav ml-auto">
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">My Profile</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#"></a>
+		      </li>
+		    </ul>	 
+		</nav>
+
+		<!-- main body -->
+		<main class="jumbotron">
+			<h1>To Do List</h1>
+			<p>--------</p>
+			<ul class="list-unstyled list">
+				<li>
+					dummy data<br/>
+					<button class="btn primary">check</button>
+				</li>
+				<li>
+					-----
+				</li>
+				<li>
+					dummy data<br/>
+					<button class="btn primary">check</button>
+				</li>
+			</ul>
+			<p>------</p>
+			<button class="btn btn-secondary addBtn" >Add Task</button>
+		</main>
 	</div>
 
-
-
+	<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 	<script src="scripts/main.js"></script>
   </body>
 </html>
