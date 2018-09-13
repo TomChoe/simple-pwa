@@ -1,8 +1,12 @@
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-	console.log('application started')
-});
+window.addEventListener('load', e => {
+	console.log('loading app')
+	if('indexedDB' in window) {
+	console.log('Browser supports indexedDB');
+};
+	registerSW();
+})
 
 const addButton = document.querySelector('.addBtn').addEventListener('click', () => {
 	addTask();
@@ -13,16 +17,17 @@ const addButton = document.querySelector('.addBtn').addEventListener('click', ()
 // })
 
 // service worker
-if('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('./sw.js')
-			 .then((registration) => console.log('service worker is registered', registration.scope))
-			 .catch(err => console.log('error loading service worker'));
+async function registerSW() {
+	if('serviceWorker' in navigator) {
+		try {
+			await navigator.serviceWorker.register('./sw.js');
+		} catch (e) {
+			alert('Service worker registration failed')
+		}
+	} else {
+		console.log('this is not going to work');
+	}
 };
-
-// indexedDB
-if('indexedDB' in window) {
-	console.log('Browser supports indexedDB');
-}
 
 const addTask = () => {
 	console.log('adding task')
