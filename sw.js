@@ -17,14 +17,23 @@ self.addEventListener('install', async e => {
 
 self.addEventListener('activate', async e => {
 	console.log('service worker activating');
+	const keys = await caches.keys();
+
+	await keys.map(key => {
+		if (key !== cacheName) {
+			console.log('removing old cache', key);
+			caches.delete(key);
+		}
+	});
+	return self.clients.claim();
 })
 
-
 self.addEventListener('fetch', async e => {
-	console.log('service worker fetch');
+	console.log('service worker fetch', e.request);
 	const req = e.request;
+	// const dataUrl = ' insert uri ';
 
-	if(/.*(json)$/.test(req.url)) {
+	if(req.url.indexOf(dataUrl) > -1) {
 		e.respondWith(networkFirst(req));
 	} else {
 		e.respondWith(cacheFirst(req));
