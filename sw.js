@@ -31,7 +31,7 @@ self.addEventListener('activate', async e => {
 self.addEventListener('fetch', async e => {
 	console.log('service worker fetch', e.request);
 	const req = e.request;
-	// const dataUrl = ' insert uri ';
+	const dataUrl = 'http://localhost:3000/tasks';
 
 	if(req.url.indexOf(dataUrl) > -1) {
 		e.respondWith(networkFirst(req));
@@ -41,18 +41,22 @@ self.addEventListener('fetch', async e => {
 });
 
 async function cacheFirst(req) {
+	console.log('cache first');
 	const cache = await caches.open(cacheName);
 	const cachedResponse = await cache.match(req);
 	return cachedResponse || networkFirst(req);
-}
+};
 
 async function networkFirst(req) {
+	console.log('network first');
 	const cache = await caches.open(cacheName);
 	try {
+		console.log('fetching fresh data')
 		const fresh = await fetch(req);
 		cache.put(req, fresh.clone());
 		return fresh;
 	} catch (e) {
+		console.log('falling back to cached data')
 		const cachedResponse = await cache.match(req);
 		return cachedResponse
 	}

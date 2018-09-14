@@ -60,24 +60,18 @@ const addTask = () => {
 
 // makeAxiosCall();
 
-// const makeFetchCall = () => {
-// 	fetch('http://192.168.43.52:3000/tasks', {
-// 		mode: 'cors',
-// 		headers: {
-// 			'Access-Control-Allow-Origin':'*'
-// 		}
-// 	})	
-// 		.then(response => {
-// 			return response;
-// 		})
-// 		.then(data => {
-// 			console.log('this is the data', data)
-// 		})
-// 		.catch(err => {
-// 			console.log('error in fetch call', err)
-// 		})
-// }
+const makeFetchCall = () => {
+	fetch('http://localhost:3000/tasks')
+		.then(response => {
+			return response.json();
+		})
+		.then(data => {
+			console.log('this is the data', data);
+		})
+		.catch(err => {
+			console.log('error in fetch call', err);
+		})
+}
 
-// makeFetchCall();
-
+makeFetchCall();
 
