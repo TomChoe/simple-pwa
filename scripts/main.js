@@ -8,13 +8,19 @@ window.addEventListener('load', e => {
 	registerSW();
 })
 
+// button to add task
 const addButton = document.querySelector('.addBtn').addEventListener('click', () => {
 	addTask();
 });
 
-// const deleteButton = document.querySelector('.deleteBtn').addEventListener('click', () => {
-// 	console.log('deleting task');
-// })
+// delete button
+const deleteButton = document.querySelector('.btn-warning');
+
+if(deleteButton) {
+	deleteButton.addEventListener('click', () => {
+		console.log('deleting task');
+	})
+};
 
 // service worker
 async function registerSW() {
@@ -39,6 +45,7 @@ const addTask = () => {
 	newTask.appendChild(document.createTextNode('dummy data'));
 	newTask.append(lineBreak);
 	newTask.appendChild(button);
+	button.setAttribute('class', 'btn btn-warning');
 	list.appendChild(newTask);
 }
 
@@ -74,4 +81,20 @@ const makeFetchCall = () => {
 }
 
 makeFetchCall();
+
+// permissions
+Notification.requestPermission((status) => {
+	console.log('Notification permission status: ', status);
+})
+
+// displaying notifications
+const displayNotification = () => {
+	if (Notification.permission == 'granted') {
+		navigator.serviceWorker.getRegisteration().then((reg) => {
+			reg.showNotification('This is a notification');
+		});
+	}
+}
+
+
 
