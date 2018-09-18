@@ -62,6 +62,15 @@ async function networkFirst(req) {
 	}
 };
 
+// interacting with the push notification api
+self.addEventListener('notificationclose', (e) => {
+	let notification = e.notification;
+	let primaryKey = notification.data.primaryKey;
+
+	console.log('Closed notification: ' + primaryKey);
+})
+
+
 // self.addEventListener('install', (e) => {
 // 	e.waitUntil(
 // 		caches.open(cacheName).then(cache => {

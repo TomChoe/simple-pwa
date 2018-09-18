@@ -85,16 +85,41 @@ makeFetchCall();
 // permissions
 Notification.requestPermission((status) => {
 	console.log('Notification permission status: ', status);
-})
+});
 
 // displaying notifications
 const displayNotification = () => {
 	if (Notification.permission == 'granted') {
-		navigator.serviceWorker.getRegisteration().then((reg) => {
-			reg.showNotification('This is a notification');
+		navigator.serviceWorker.getRegistration().then((reg) => {
+			let options = {
+				body: 'Here is the body of the message',
+				icon: '/images/simple.png',
+				data: {
+					dateOfArrival: Date.now(),
+					primaryKey: 1
+				},
+				actions: [
+					{action: 'explore', title: 'Explore the world'},
+					{action: 'close', title: 'close notification'}
+				]
+			};
+			reg.showNotification('This is a notification', options);
 		});
 	}
-}
+};
+
+displayNotification();
+
+
+
+
+
+
+
+
+
+
+
 
 
 
