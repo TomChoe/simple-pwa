@@ -1,0 +1,11 @@
+\c PWAtest;
+
+DROP TABLE IF EXISTS tests;
+
+CREATE TABLE tests (
+	id SERIAL PRIMARY KEY,
+	tasks VARCHAR(255),
+	date_created TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX ON tests (tasks);

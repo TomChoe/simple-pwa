@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.4",
+    "pg-promise": "^8.4.6",
+    "web-push": "^3.3.3"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "name": "testserver",
+  "version": "1.0.0",
+  "description": "simple backend for pwa",
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "tom choe",
+  "license": "MIT"
+}
